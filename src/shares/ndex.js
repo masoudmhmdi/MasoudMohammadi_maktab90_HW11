@@ -1,2 +1,2 @@
-export * from "./buttons/index";
-export * from "./input/index";
+export * from './buttons/index';
+export * from './inputField/index';
