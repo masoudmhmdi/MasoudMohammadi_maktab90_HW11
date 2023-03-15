@@ -1,8 +1,8 @@
 import El from '@/library';
 import { renderList } from '@/library/renderList';
 import { ShowLoading } from '@/shares/Loding';
-// import { renderList } from '@/library/renderList';
 import { Li } from '../component/Li';
+import { Pagination } from '../component/Pagination';
 
 export const List = () => {
   return El({
@@ -24,6 +24,7 @@ export const List = () => {
         id: 'liContainer',
         child: [ShowLoading(), renderList('http://localhost:3000/tasks')],
       }),
+      Pagination(),
     ],
   });
 };

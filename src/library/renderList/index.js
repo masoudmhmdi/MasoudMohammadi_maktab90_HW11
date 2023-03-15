@@ -72,4 +72,5 @@ export const renderList = async function (url) {
       })
     );
   });
+  return response;
 };

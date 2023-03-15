@@ -1,6 +1,7 @@
 import { Header } from './layout';
 import { Modal } from './layout/component';
 import { List } from './layout/ListContainer';
+import { sidebar } from './layout/sidebar';
 import El from './library';
 export const App = function () {
   return El({
@@ -14,6 +15,7 @@ export const App = function () {
       }),
       Header(),
       List(),
+      sidebar(),
     ],
   });
 };

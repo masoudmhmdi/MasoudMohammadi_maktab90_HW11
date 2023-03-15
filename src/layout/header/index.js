@@ -57,6 +57,11 @@ export const Header = () => {
             variant: 'header',
             classes: 'h-full',
             innerHTML: svgs.edit,
+            onclick: () => {
+              const el = document.getElementById('sidebarContainer');
+              el.style.width = '350px';
+              el.style.padding = '16px';
+            },
           }),
           Button({
             variant: 'header',

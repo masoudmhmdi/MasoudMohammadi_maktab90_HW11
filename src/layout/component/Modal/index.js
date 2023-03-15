@@ -315,13 +315,13 @@ export const Modal = (isEdit = false, editBtnId = '') => {
       }
     },
     className:
-      'hidden w-screen h-screen bg-slate-900 transition bg-opacity-20 flex items-end  backdrop-blur-sm  fixed w-full bottom-0 right-0',
+      'hidden w-screen transition-all h-screen bg-slate-900 transition bg-opacity-20 flex items-end  backdrop-blur-sm  fixed w-full bottom-0 right-0',
     child: [
       El({
         element: 'div',
         id: 'form',
         className:
-          'w-[600px] h-[500px]  bg-white rounded shadow-xl absolute   top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20',
+          'w-[600px] h-[500px]    bg-white rounded shadow-xl absolute   top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] z-20',
         child: [renderForm()],
       }),
     ],
