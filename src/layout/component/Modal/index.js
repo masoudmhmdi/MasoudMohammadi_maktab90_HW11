@@ -43,7 +43,7 @@ export const Modal = () => {
                       inputField({
                         variant: 'header',
                         id: 'nameInput',
-                        name: 'taskName',
+                        name: 'name',
                         classes:
                           'w-full h-full p-1 focus:outline-purple-500 rounded-[1px]',
                         onfocus: (e) => {
@@ -60,7 +60,7 @@ export const Modal = () => {
                           element: 'div',
                           className:
                             ' bg-white px-2 text-xs text-purple-500 absolute bottom-0 left-40 transition transition-all opacity-0 duration-1000',
-                          child: 'Task Name',
+                          child: 'TaskName',
                         }),
                       }),
                       El({
@@ -129,6 +129,7 @@ export const Modal = () => {
                       }),
                       El({
                         element: 'textarea',
+                        name: 'textarea',
                         className: 'w-full h-36 text-xs p-4 mt-8',
                         id: 'detail',
                         restAttrs: {
@@ -170,7 +171,23 @@ export const Modal = () => {
               }),
             ],
             handleSubmit(data) {
-              console.log(data);
+              fetch('http://localhost:3000/tasks', {
+                method: 'post',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              })
+                .then((response) => {
+                  return response.json();
+                })
+                .then((jsonResponse) => {
+                  console.log(jsonResponse);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
             },
             handleErrors() {
               alert('submit error');

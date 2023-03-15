@@ -54,7 +54,6 @@ export const Header = () => {
             classes: 'h-full',
             innerHTML: svgs.add,
             onclick: () => {
-              console.log(document.getElementById('modalContainer'));
               document.getElementById('modalContainer').style.display = 'block';
             },
           }),
