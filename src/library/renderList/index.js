@@ -5,17 +5,19 @@ import El from '..';
 import { Button } from '@/shares/buttons';
 import { svgs } from '@/asset/svgs';
 
-export const renderList = (arr) => {
-  // eslint-disable-next-line array-callback-return
+export const renderList = async function () {
+  const response = await fetch('http://localhost:3000/tasks');
+  const getData = await response.json();
+  const localData = [...getData];
   const container = document.getElementById('liContainer');
   container.innerHTML = '';
-  arr.forEach((item) => {
+  localData.forEach((item) => {
     container.append(
       Li({
-        text1: item.TaskName,
+        text1: item.name,
         priority: item.priority,
         status: item.status,
-        text4: item.deadline,
+        text4: item.date,
         dateStyle: 'border border-blue-400 rounded-xl px-1',
         text5: El({
           element: 'div',

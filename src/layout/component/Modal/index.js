@@ -2,10 +2,11 @@ import El from '@/library';
 import { Button } from '@/shares/buttons';
 import { inputField } from '@/shares/inputField';
 
-import { renderList } from '@/library/renderList';
 import { FormScreen } from '@/screen/FormScreen';
 import { SelectField } from '@/shares/Select';
 import { Form } from '@/library/Form/Form';
+
+import { AddTask } from '@/library/addTask';
 export const Modal = () => {
   return El({
     element: 'div',
@@ -164,31 +165,10 @@ export const Modal = () => {
                     ],
                   }),
                 ],
-                onsubmit: (e) => {
-                  e.preventDefault();
-                  renderList();
-                },
               }),
             ],
-            handleSubmit(data) {
-              fetch('http://localhost:3000/tasks', {
-                method: 'post',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-              })
-                .then((response) => {
-                  return response.json();
-                })
-                .then((jsonResponse) => {
-                  console.log(jsonResponse);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            },
+            handleSubmit: AddTask,
+
             handleErrors() {
               alert('submit error');
             },

@@ -14,7 +14,6 @@ export const handleSubmitForm = ({ e, handleSubmit, handleErrors }) => {
     }
   });
   data.id = Date.now();
-
   const isFormValid = allElArr.every((i) => i.dataset.valid === 'true');
   if (isFormValid) {
     handleSubmit(data);
