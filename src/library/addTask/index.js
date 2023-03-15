@@ -8,6 +8,7 @@ export const AddTask = async function (data) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data),
+  }).then(() => {
+    renderList('http://localhost:3000/tasks');
   });
-  renderList();
 };

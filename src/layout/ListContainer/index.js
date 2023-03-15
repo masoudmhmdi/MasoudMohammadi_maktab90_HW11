@@ -4,7 +4,7 @@ import { ShowLoading } from '@/shares/Loding';
 // import { renderList } from '@/library/renderList';
 import { Li } from '../component/Li';
 
-export const List = (data) => {
+export const List = () => {
   return El({
     element: 'ul',
     id: 'listContainer',
@@ -22,7 +22,7 @@ export const List = (data) => {
       El({
         element: 'ul',
         id: 'liContainer',
-        child: [ShowLoading(), renderList()],
+        child: [ShowLoading(), renderList('http://localhost:3000/tasks')],
       }),
     ],
   });

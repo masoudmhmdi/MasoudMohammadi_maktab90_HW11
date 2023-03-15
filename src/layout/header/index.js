@@ -2,7 +2,10 @@ import El from '@/library';
 import { svgs } from '@/asset/svgs';
 import { Button } from '@/shares/buttons';
 import { inputField } from '@/shares/inputField';
-
+import { Modal } from '../component';
+import { renderList } from '@/library/renderList';
+import { ShowLoading } from '@/shares/Loding';
+import { debounce } from 'lodash';
 export const Header = () => {
   return El({
     element: 'div',
@@ -41,6 +44,12 @@ export const Header = () => {
                 variant: 'header',
                 classes: 'pl-2 text-white',
                 placeholder: 'search',
+                onkeyup: debounce(async (e) => {
+                  const value = e.target.value;
+                  const container = document.getElementById('liContainer');
+                  container.prepend(ShowLoading());
+                  renderList(`http://localhost:3000/tasks?q=${value}`);
+                }, 1000),
               }),
             ],
           }),
@@ -54,6 +63,9 @@ export const Header = () => {
             classes: 'h-full',
             innerHTML: svgs.add,
             onclick: () => {
+              const modalParent = document.querySelector('#modalParent');
+              modalParent.innerHTML = '';
+              modalParent.append(Modal(false));
               document.getElementById('modalContainer').style.display = 'block';
             },
           }),

@@ -4,9 +4,12 @@ import { Li } from '@/layout/component';
 import El from '..';
 import { Button } from '@/shares/buttons';
 import { svgs } from '@/asset/svgs';
+import { HandleEdit } from '../HandleEdit';
+import { ShowLoading } from '@/shares/Loding';
 
-export const renderList = async function () {
-  const response = await fetch('http://localhost:3000/tasks');
+export const renderList = async function (url) {
+  ShowLoading();
+  const response = await fetch(url);
   const getData = await response.json();
   const localData = [...getData];
   const container = document.getElementById('liContainer');
@@ -24,21 +27,22 @@ export const renderList = async function () {
           className: 'flex flex-row gap-1',
           child: [
             Button({
+              id: 'delete',
               child: [
                 El({
                   element: 'span',
                   className: 'p-1',
                   innerHTML: svgs.delete,
-                  onclick: (e) => {
-                    // const id = e.target.closest('li').id;
-                    // console.log(id);
-                    // const filterArr = db.filter((item) => item.id !== +id);
-                    // renderList(filterArr);
-                    // SetItem(filterArr);
-                  },
                 }),
               ],
               classes: 'bg-red-500',
+              onclick: (e) => {
+                console.log('eh');
+                const id = e.target.closest('li').id;
+                fetch(`http://localhost:3000/tasks/${id}`, {
+                  method: 'DELETE',
+                }).then(() => renderList('http://localhost:3000/tasks'));
+              },
             }),
             Button({
               child: [
@@ -49,6 +53,7 @@ export const renderList = async function () {
                 }),
               ],
               classes: 'bg-blue-500',
+              onclick: HandleEdit,
             }),
             Button({
               child: [

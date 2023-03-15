@@ -6,6 +6,14 @@ export const App = function () {
   return El({
     element: 'div',
     className: 'w-full h-full',
-    child: [Modal(), Header(), List()],
+    child: [
+      El({
+        element: 'div',
+        id: 'modalParent',
+        child: [Modal()],
+      }),
+      Header(),
+      List(),
+    ],
   });
 };
